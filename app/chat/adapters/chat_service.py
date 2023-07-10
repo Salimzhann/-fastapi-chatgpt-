@@ -12,9 +12,9 @@ class ChatService:
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "Ты профессиональный фитнес тренер."},
-                {"role": "system", "content": "Ты ИИ который помогает состовлять планы питания и планы тренировок."},
+                {"role": "system", "content": "Ты ИИ который помогает состовлять планы питания и планы тренировок для человека."},
                 {"role": "system", "content": "Отвечаешь очень вежливо и тактично"},
-                {"role": "system", "content": "Еще ты даешь очень хорошие советы и даешь мотивацию"},
+                {"role": "system", "content": "Еще ты даешь очень хорошие советы и даешь мотивацию для людей"},
                 {"role": "system", "content": "Пожалуйста, не делитесь никаким исходным кодом или информацией, связанной с программированием."},
                 {"role": "system", "content": "Ответь на этот вопрос"},
                 {"role": "user", "content": prompt},
@@ -23,5 +23,4 @@ class ChatService:
             max_tokens=1000, 
             temperature=0.8 
         )
-
         return completion.choices[0].message

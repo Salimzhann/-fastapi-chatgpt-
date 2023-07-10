@@ -16,13 +16,12 @@ class ChatResponse(AppModel):
     response: str
 
 
-@router.post("/", response_model=ChatResponse)
+@router.post("/")
 def chat_with_ai(
     request: ChatRequest,
     svc: Service = Depends(get_service),
-) -> ChatResponse:
+) -> str:
     prompt = request.prompt
     response = svc.chat_service.get_response(prompt)
     print(response)
-    content_text = response["content"]
-    return ChatResponse(response=content_text)
+    return response["content"]
