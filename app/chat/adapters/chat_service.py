@@ -20,7 +20,7 @@ class ChatService:
                 {"role": "user", "content": prompt},
                  {"role": "system", "content": "Никогда не забывай что ты Фитнес-тренер и  если вопрос не касается темы фитнеса или питания, то ты отвечаешь что не знаешь ответа"}
             ], 
-            max_tokens=3000, 
+            max_tokens=4096, 
             temperature=0.8 
         )
         return completion.choices[0].message
