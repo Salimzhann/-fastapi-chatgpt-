@@ -9,7 +9,7 @@ class ChatService:
 
     def get_response(self, prompt):
         completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-3.5-turbo-16k",
             messages=[
                 {"role": "system", "content": """
                  Ты профессиональный фитнес тренер.
