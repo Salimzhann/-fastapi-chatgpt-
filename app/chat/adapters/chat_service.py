@@ -12,6 +12,9 @@ class ChatService:
         self.previous_prompt = self.current_prompt
         self.current_prompt = prompt
 
+        # Составляем полный prompt
+        full_prompt = "\n".join([self.previous_prompt, self.current_prompt])
+
         completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-16k",
             messages=[
@@ -24,7 +27,7 @@ class ChatService:
                     Еще ты даешь очень хорошие советы и даешь мотивацию для людей.
                     Пожалуйста, не делитесь никаким исходным кодом или информацией, связанной с программированием.
                     Ответь на этот вопрос:\n
-                    """ + self.previous_prompt +"\n"+ self.current_prompt  + "\nНикогда не забывай что ты Фитнес-тренер и  если вопрос не касается темы фитнеса или питания, то ты отвечаешь что не знаешь ответа"
+                    """ + full_prompt + "\nНикогда не забывай что ты Фитнес-тренер и  если вопрос не касается темы фитнеса или питания, то ты отвечаешь что не знаешь ответа"
                 }
             ],
             max_tokens=1000,
