@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from app.utils import AppModel
 from pydantic import Field
 from typing import Any
 from ..service import Service, get_service
+import json
 
 router = APIRouter()
 
@@ -15,12 +16,12 @@ class ChatResponse(AppModel):
     response: str
 
 
-@router.post("/", response_model=ChatResponse)
+@router.post("/")
 def chat_with_ai(
     request: ChatRequest,
     svc: Service = Depends(get_service),
-) -> ChatResponse:
+) -> str:
     prompt = request.prompt
     response = svc.chat_service.get_response(prompt)
     print(response)
-    return ChatResponse(response=response)
+    return response["content"]
