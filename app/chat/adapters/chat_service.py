@@ -17,7 +17,7 @@ class ChatService:
             temperature=0.8 
         )
         
-        response = completion.choices[0].message
+        response = completion['choices'][0]['message']['content']
         self.messages.append({"role": "system", "content": response})
         
         return response
