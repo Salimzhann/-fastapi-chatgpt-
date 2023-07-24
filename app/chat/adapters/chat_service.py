@@ -13,7 +13,7 @@ class ChatService:
         if len(self.questions) == 0:
             completion = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo-16k",
-                messages=prompt,
+                messages=f'{self.questions}, {self.messages}. question: {prompt}',
                 max_tokens=1000, 
                 temperature=0.8 
             )
