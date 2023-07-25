@@ -23,4 +23,4 @@ def chat_with_ai(
 ) -> ChatResponse:
     prompt = request.prompt
     response = svc.chat_service.get_response(prompt)
-    return ChatResponse(response=response)
+    return ChatResponse(response=str(response))
