@@ -23,10 +23,5 @@ def chat_with_ai(
 ) -> str:
     prompt = request.prompt
     response = svc.chat_service.get_response(prompt)
-    
-    # Update chat history with user's prompt and AI's response
-    svc.chat_service.add_chat("user", prompt)
-    svc.chat_service.add_chat("assistant", response)
-
-    # Return AI's response
+    print(response)
     return response["content"]
