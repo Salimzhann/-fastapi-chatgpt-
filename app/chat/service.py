@@ -17,5 +17,6 @@ class Service:
 
 
 def get_service():
-    token = os.getenv("OPEN_API_KEY")
-    return Service(token)
+    token = os.getenv("OPENAI_API_KEY")
+    svc = Service(token)
+    return svc
