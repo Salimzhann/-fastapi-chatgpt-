@@ -31,5 +31,5 @@ class ChatService:
             temperature=0.8 
         )
         messages.append({"role": "assistant", "content": completion})
-        return completion['choices'][0]
+        return completion['choices'][0]['message']
         
