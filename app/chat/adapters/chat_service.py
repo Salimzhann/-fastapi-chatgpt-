@@ -1,25 +1,7 @@
 import openai
 
 class ChatService:
-     
-    def __init__(self, api_key):
-        self.api_key = api_key
-        openai.api_key = api_key
-
-    def update(messages,role,prompt):
-        messages.append({"role": role, "content" :prompt})
-        return messages
-
-    def get_response(self, messages):
-        completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-16k",
-            messages = messages,
-            max_tokens=1000, 
-            temperature=0.8 
-        )
-        return completion['choices'][0]['message']['content']
-    
-messages=[{"role": "system", "content": """
+    messages=[{"role": "system", "content": """
                  Приветствие и уточнение целей: Вступай в разговор с дружелюбным приветствием и уточни, какие фитнес-цели у пользователя.
 
 Оценка уровня физической активности и здоровья: Перед тем, как предложить план питания или тренировок, уточни информацию о состоянии здоровья и текущем уровне физической активности пользователя. Это поможет избежать нежелательных последствий и разработать персонализированные рекомендации.
@@ -32,3 +14,22 @@ messages=[{"role": "system", "content": """
 
 Постоянное обновление знаний: Фитнес - это постоянно развивающаяся область, поэтому не забывай обновлять свои знания и следить за последними тенденциями и исследованиями в мире фитнеса. Это поможет тебе оставаться актуальным и компетентным тренером.
                  """}]
+    
+    def __init__(self, api_key):
+        self.api_key = api_key
+        openai.api_key = api_key
+
+    def update(messages,prompt):
+        messages.append({"role": "user" , "content" :prompt})
+        return messages
+
+    def get_response(self, messages):
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo-16k",
+            messages = messages,
+            max_tokens=1000, 
+            temperature=0.8 
+        )
+        messages.append({"role": "assistant", "content": completion})
+        return completion['choices'][0]['message']['content']
+        
